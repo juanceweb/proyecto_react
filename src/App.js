@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from './components/NavBar';
+import Container from './components/ItemListConteiner';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
         <NavBar />
-      </header>
+        <Container nombre="Juance"/>
     </div>
   );
 }
