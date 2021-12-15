@@ -15,13 +15,13 @@ const FunctAddRest = ({valorInicial = 0, stockIni = 5}) => {
     }
 
 
-return (
-    <div className="d-flex justify-content-center">
-        <button className="btn bg-danger" onClick={rest}>-</button>
-        <p className="m-2">{valor}</p>
-        <button className="btn bg-success" onClick={add}>+</button>
-    </div> 
-);
-}
+    return (
+        <div className="d-flex justify-content-center">
+            <button className="btn bg-danger" onClick={rest}>-</button>
+            <p className="m-2">{valor}</p>
+            <button className="btn bg-success" onClick={add}>+</button>
+        </div> 
+    );
+    }
 
 export default FunctAddRest
