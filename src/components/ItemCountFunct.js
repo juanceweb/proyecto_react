@@ -17,9 +17,9 @@ const FunctAddRest = ({valorInicial = 0, stockIni = 5}) => {
 
     return (
         <div className="d-flex justify-content-center">
-            <button className="btn bg-danger" onClick={rest}>-</button>
-            <p className="m-2">{valor}</p>
-            <button className="btn bg-success" onClick={add}>+</button>
+            <button className="btn bg-success text-white border-2 border-dark  my-1 px-3" onClick={rest}>-</button>
+            <p className="m-2 text-white">{valor}</p>
+            <button className="btn bg-primary text-white border-2 border-dark my-1 px-3" onClick={add}>+</button>
         </div> 
     );
     }

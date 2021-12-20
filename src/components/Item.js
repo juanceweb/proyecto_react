@@ -1,22 +1,32 @@
+import React, {useEffect, useState} from "react";
 import FunctAddRest from "./ItemCountFunct"
 
 
-const Item = ({id, titulo, descripcion, precio, img}) => {
+const Item = ({pokemon}) => {
+
+    const [pokemonData, setPokemonData] = useState([]);
+
+    const fetchPokemon = async () => {
+        const call = await fetch(pokemon?.url);
+        const result = await call.json();
+        setPokemonData(result);
+    };
+
+    useEffect(() => {
+        fetchPokemon();
+    },[pokemon]);
+
     return (
-        <div className="col-7 card m-5">
-            <h5 className="card-title">{id}</h5>
-            <img src={img} alt="..."></img>
+        <div className="col-2 card mx-5 my-3 border border-dark border-3 bg-danger">
+            <h5 className="card-title text-white mt-1">N°{pokemonData?.id}</h5>
+            <img src={pokemonData?.sprites?.front_default} className="border bg-white border-dark border-3 card-img-top" alt="..."></img>
             <div className="card-body">
-                <h5 className="card-title">{titulo}</h5>
-                <h5 className="card-title">${precio}</h5>
-                <p className="card-text">{descripcion}</p>
+                <h5 className="card-title text-white">{pokemonData?.name?.toUpperCase()}</h5>
                 <FunctAddRest valorInicial={1} stockIni={8} />
-                <a href="#" className="btn btn-primary m-3">Comprar</a>
+                <a href="#" className="btn btn-secondary m-3 border-dark border-2">COMPRAR</a>
             </div>
         </div>
     )
 }
-
-// className="card-img-top"
 
 export default Item
