@@ -1,31 +1,32 @@
 import React, {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail"
 import ButtonFunct from "./Commons";
 import NavBar from './NavBar';
 
-const DetailContainer = ({nombre}) => {
+const DetailContainer = () => {
+
+    const {id} = useParams() || ""
 
     const [pokemon, setPokemon] = useState({});
-    const [id, setId] = useState(1)
+    const [idpoke, setIdpoke] = useState(parseInt(id))
 
     const fetchPokemon = async () => {
-        const call = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const call = await fetch(`https://pokeapi.co/api/v2/pokemon/${idpoke}`);
         const result = await call.json();
         setPokemon(result);
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            fetchPokemon();
-            },2000)
-        },[id]);
+        fetchPokemon();
+        },[idpoke]);
 
     const AddId = () => {
-        const suma = (id >= 151) ? console.log("maximo") : setId((prev) => prev + 1);
+        (idpoke >= 500) ? console.log("maximo") : setIdpoke ((prev) => prev + 1);
     }
 
     const RestId = () => {
-        const rest = (id <= 1) ? console.log("minimo") : setId ((prev) => prev - 1);
+        (idpoke <= 1) ? console.log("minimo") : setIdpoke ((prev) => prev - 1);
 
     }
 

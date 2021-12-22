@@ -1,9 +1,36 @@
 import React, {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import FunctItemList from "./ItemList"
 import ButtonFunct from "./Commons";
 import NavBar from './NavBar';
 
-const ListContainer = ({nombre, index, max, min, dif}) => {
+const ListContainer = () => {
+
+    const {id} = useParams() || ""
+
+    let nombre;
+    let index;
+    let max;
+    let min;
+    let dif;
+
+    switch (id) {
+        case "gen2":
+            nombre = "Gen 2";
+            index = 151;
+            max = 220;
+            min = 151;
+            dif = 20;
+            break;
+    
+        default:
+            nombre = "Gen 1";
+            index = 0;
+            max = 140;
+            min = 0;
+            dif = 11;
+            break;
+    }
 
     const [pokemon, setPokemon] = useState([]);
     const [indice, setIndice] = useState(index)
@@ -14,6 +41,16 @@ const ListContainer = ({nombre, index, max, min, dif}) => {
         const result = await call.json();
         setPokemon(result.results);
     };
+
+    useEffect(() => {
+        setIndice(index)
+        console.log("cambio el id");
+    },[id]);
+
+    useEffect(() => {
+        fetchPokemon();
+        console.log("use efect de fetch");
+    },[indice]);
 
     const AumentarIndicePokemon = () => {
         if (indice >= max) {
@@ -27,12 +64,8 @@ const ListContainer = ({nombre, index, max, min, dif}) => {
     }
 
     const BajarIndicePokemon = () => {
-        const restar = (indice === min) ? console.log(`indice minimo para ${nombre}`): setIndice ((prev) => prev - 20);
+        indice === min ? console.log(`indice minimo para ${nombre}`): setIndice ((prev) => prev - 20);
     }
-
-    useEffect(() => {
-        fetchPokemon();
-    },[indice]);
 
     return (
         <div className="App poke-background">

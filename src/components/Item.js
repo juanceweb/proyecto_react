@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import FunctAddRest from "./ItemCountFunct"
+import { Link, NavLink } from "react-router-dom";
 
 
 const Item = ({pokemon}) => {
@@ -23,7 +24,7 @@ const Item = ({pokemon}) => {
             <div className="card-body">
                 <h5 className="card-title text-white">{pokemonData?.name?.toUpperCase()}</h5>
                 <FunctAddRest valorInicial={1} stockIni={8} />
-                <a href="#" className="btn btn-secondary m-3 border-dark border-2">COMPRAR</a>
+                <a href="#" className="btn btn-secondary m-3 border-dark border-2"><NavLink to={`/item/${pokemonData?.id}`}>VER MAS</NavLink></a>
             </div>
         </div>
     )
