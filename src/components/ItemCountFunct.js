@@ -1,19 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
 
-const FunctAddRest = ({valorInicial = 0, stockIni = 5}) => {
+const FunctAddRest = ({valorInicial = 0, stockIni = 5, getCantidad}) => {
     const [valor, setValor] = useState(valorInicial)
     const [stock, setStock] = useState(stockIni)
 
     const add = () => {
-        const addition = (valor < stock ) ? setValor((prev) => prev + 1) : "stock max";
+        const addition = (valor < stock ) ? setValor((prev) => prev + 1) : console.log("stock max");
     }
 
     const rest = () => {
-        const resta = (valor > 0 ) ? setValor((prev) => prev - 1) : "stock min"
+        const resta = (valor > 0 ) ? setValor((prev) => prev - 1) : console.log("stock min");
     }
 
+    useEffect(() => {
+        getCantidad(valor)
+    },[valor])
 
     return (
         <div className="d-flex justify-content-center">

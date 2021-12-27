@@ -9,8 +9,6 @@ class ClassAddRest extends Component {
             valor: props.valorInicial ?? 0,
             stock: props.stock ?? 0, 
         };
-        // this.suma = this.add.bind();
-        // this.resta = this.rest.bind();
     }
 
     add = () => {
