@@ -28,7 +28,7 @@ function NavBar() {
                         </li>
                     </ul>
                 </div>
-                <BottonCarrito img={imgCarrito}/>
+                <NavLink to={"/cart"}><BottonCarrito img={imgCarrito}/></NavLink>
             </div>
         </nav>
     )

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 
 
-const FunctAddRest = ({valorInicial = 0, stockIni = 5, getCantidad}) => {
+const FunctAddRest = ({valorInicial = 1, stockIni = 5, getCantidad}) => {
     const [valor, setValor] = useState(valorInicial)
     const [stock, setStock] = useState(stockIni)
 
@@ -11,7 +11,7 @@ const FunctAddRest = ({valorInicial = 0, stockIni = 5, getCantidad}) => {
     }
 
     const rest = () => {
-        const resta = (valor > 0 ) ? setValor((prev) => prev - 1) : console.log("stock min");
+        const resta = (valor > 1 ) ? setValor((prev) => prev - 1) : console.log("stock min");
     }
 
     useEffect(() => {
