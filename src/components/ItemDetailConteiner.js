@@ -32,7 +32,6 @@ const DetailContainer = () => {
 
     return (
         <div className="App poke-background">
-            <NavBar />
             <ButtonFunct funcion={RestId} nombre={"BEFORE"}/>
             <ButtonFunct funcion={AddId} nombre={"NEXT"}/>
             <ItemDetail pokemon={pokemon}/>

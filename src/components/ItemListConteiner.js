@@ -69,7 +69,6 @@ const ListContainer = () => {
 
     return (
         <div className="App poke-background">
-            <NavBar />
             <h1 className="p-5 color-red">Bienvenido a {nombre}!</h1>
             <ButtonFunct funcion={BajarIndicePokemon} nombre={"ANTERIOR"}/>
             <ButtonFunct funcion={AumentarIndicePokemon} nombre={"SIGUIENTE"}/>

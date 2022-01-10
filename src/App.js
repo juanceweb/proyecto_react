@@ -6,6 +6,7 @@ import DetailContainer from './components/ItemDetailConteiner';
 import CartBody from './components/Cart';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CustomContext from './contexts/CustomContext';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <CustomContext>
       <BrowserRouter>
+      <NavBar/>
         <Routes>
           <Route path="/" element={<ListContainer />}></Route>
           <Route path="/category/:id" element={<ListContainer />}></Route>

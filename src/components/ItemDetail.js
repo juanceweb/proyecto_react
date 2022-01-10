@@ -18,7 +18,7 @@ const ItemDetail = ({pokemon}) => {
                         <h5 className="card-title text-white">{pokemon?.name?.toUpperCase()}</h5>
                         <h4 className="card-title text-success">${pokemon?.weight}</h4>
                         <FunctAddRest getCantidad={(c) => setCantidad(c)} stockIni={8} />
-                        <a href="#" onClick={() => context.add(pokemon, cantidad)} className="btn btn-secondary m-3 border-dark border-2"><NavLink to="/cart">AGREGAR AL CARRITO</NavLink></a>
+                        <a href="#" onClick={() => context.add(pokemon, cantidad)} className="btn btn-secondary m-3 border-dark border-2">AGREGAR AL CARRITO</a>
                     </div>
                 </div>
                 <div className="col-3 card border border-dark border-3 bg-danger">

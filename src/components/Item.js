@@ -22,7 +22,7 @@ const Item = ({pokemon}) => {
             <img src={pokemonData?.sprites?.front_default} className="border bg-white border-dark border-3 card-img-top" alt="..."></img>
             <div className="card-body">
                 <h5 className="card-title text-white">{pokemonData?.name?.toUpperCase()}</h5>
-                <a href="#" className="btn btn-secondary m-3 border-dark border-2"><NavLink to={`/item/${pokemonData?.id}`}>VER MAS</NavLink></a>
+                <NavLink className="btn btn-secondary m-3 border-dark border-2" to={`/item/${pokemonData?.id}`}>VER MAS</NavLink>
             </div>
         </div>
     )
