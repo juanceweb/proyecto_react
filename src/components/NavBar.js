@@ -7,7 +7,7 @@ import CartContext from "../contexts/CartContext";
 
 function NavBar() {
 
-    const context = useContext(CartContext)
+    const {arr} = useContext(CartContext)
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-danger">
@@ -28,11 +28,11 @@ function NavBar() {
                             <a className="nav-link text-gray disabled" href="#">GEN 3</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled text-gray" href="#" tabindex="-1" aria-disabled="true">GEN 4</a>
+                            <a className="nav-link disabled text-gray" href="#" tabIndex="-1" aria-disabled="true">GEN 4</a>
                         </li>
                     </ul>
                 </div>
-                <NavLink to={"/cart"}><BottonCarrito img={imgCarrito}/><span class="badge bg-secondary">{context.length()}</span></NavLink>                
+                <NavLink to={"/cart"}><BottonCarrito img={imgCarrito}/><span className="badge bg-secondary">{arr.length}</span></NavLink>                
             </div>
         </nav>
     )

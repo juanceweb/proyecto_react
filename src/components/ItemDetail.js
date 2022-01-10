@@ -38,8 +38,8 @@ const ItemDetail = ({pokemon}) => {
                         </div>
                         <div className="row bg-secondary border align-items-center my-2">
                             <h5 className="col text-white text-start mt-2">TYPE:</h5>
-                            {pokemon?.types?.map((element) => (
-                                <h5 className="col text-white mt-2">{element?.type?.name.toUpperCase()}</h5>
+                            {pokemon?.types?.map((element, index) => (
+                                <h5 key={index} className="col text-white mt-2">{element?.type?.name.toUpperCase()}</h5>
                             ))}
                         </div>
                     </div>

@@ -10,7 +10,7 @@ const CartBody = () => {
 
     const context = useContext(CartContext)
 
-    if (context.length() == 0){
+    if (context.arr === []){
         return (
             <div>
                 <div>El Carrito esta vacio</div>
@@ -20,8 +20,8 @@ const CartBody = () => {
     } else {
         return (
             <div className="container-fluid">
-                {context.check().map((pokemon) => (
-                    <div className="row justify-content-center d-flex align-items-center border border-dark border-3 bg-danger m-5">
+                {context.check().map((pokemon, index) => (
+                    <div key={index} className="row justify-content-center d-flex align-items-center border border-dark border-3 bg-danger m-5">
                         <div className="col-1">
                             <img src={pokemon.img} className="border border-dark border-3 m-3 bg-white" alt="..."></img>
                         </div>
