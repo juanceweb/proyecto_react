@@ -9,8 +9,9 @@ import { NavLink } from "react-router-dom";
 const CartBody = () => {
 
     const context = useContext(CartContext)
+    const {arr} = useContext(CartContext)
 
-    if (context.arr === []){
+    if (arr.length === 0){
         return (
             <div>
                 <div>El Carrito esta vacio</div>
