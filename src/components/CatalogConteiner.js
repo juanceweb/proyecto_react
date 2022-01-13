@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import FunctItemList from "./ItemList"
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import Pokeimg from "../media/pngegg.png";
+import ButtonFunct from "./Commons";
 
-const ListContainer = () => {
+const CatalogContainer = () => {
 
     const [ListPokemon, setListPokemon] = useState([])
 
@@ -78,6 +79,23 @@ const ListContainer = () => {
     //     indice === min ? console.log(`indice minimo para ${nombre}`): setIndice ((prev) => prev - 20);
     // }
 
+    const Type = (type) =>{
+        if (type == ""){
+            const db = getFirestore();
+
+            const collect = collection(db, "items");
+            getDocs(collect).then((snapshot) => {
+                setListPokemon(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data()})))
+            })
+        }else{
+        const db = getFirestore();
+
+        const q = query(collection(db, "items"), where("type","==", type));
+        getDocs(q).then((snapshot) => {
+            setListPokemon(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data()})))
+        });
+    }}
+
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -101,8 +119,11 @@ const ListContainer = () => {
         return (
                 <div className="App poke-background">
                     {/* <h1 className="p-5 color-red">Bienvenido a {nombre}!</h1> */}
-                    {/* <ButtonFunct funcion={BajarIndicePokemon} nombre={"ANTERIOR"}/>
-                    <ButtonFunct funcion={AumentarIndicePokemon} nombre={"SIGUIENTE"}/> */}
+                    {/* {/* <ButtonFunct funcion={BajarIndicePokemon} nombre={"ANTERIOR"}/> */}
+                    <ButtonFunct funcion={() => Type("")} nombre={"ALL"}/>
+                    <ButtonFunct funcion={() => Type("plant")} nombre={"PLANT"}/>
+                    <ButtonFunct funcion={() => Type("fire")} nombre={"FIRE"}/>
+                    <ButtonFunct funcion={() => Type("water")} nombre={"WATER"}/>
                     <FunctItemList listaPokemons={ListPokemon}/>
                     {/* <ButtonFunct funcion={BajarIndicePokemon} nombre={"ANTERIOR"}/>
                     <ButtonFunct funcion={AumentarIndicePokemon} nombre={"SIGUIENTE"}/> */}
@@ -111,4 +132,4 @@ const ListContainer = () => {
     }
 }
 
-export default ListContainer
+export default CatalogContainer

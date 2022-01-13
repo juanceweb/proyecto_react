@@ -22,7 +22,7 @@ function NavBar() {
                             <NavLink className="nav-link text-white" to={"/category/gen1"}>GEN 1</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link text-white" to={"/category/gen2"}>GEN 2</NavLink>
+                            <NavLink className="nav-link text-white" to={"/catalog"}>CATALOGO</NavLink>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-gray disabled" href="#">GEN 3</a>

@@ -9,7 +9,7 @@ function CustomContext ({children}){
         const result = arr.find(element => element.id == pokemon.id)
         if (result == undefined) {
             console.log("se cargo al carrito");
-            const aux = [...arr,{id: pokemon.id, nombre: pokemon.name, cantidad: cantidad, img : pokemon.sprites.front_default, precio: pokemon.weight}]
+            const aux = [...arr,{id: pokemon.poke_id, nombre: pokemon.nombre, cantidad: cantidad, img : pokemon.img, precio: pokemon.precio}]
             setArr(aux)
         }else {
             result.cantidad += cantidad;

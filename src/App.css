@@ -46,3 +46,9 @@
 .poke-background {
   background-image: url(./media/Bt0sdpD.jpeg);
 }
+
+.loading {
+  text-align: center;
+  padding-top: 10rem;
+  padding-bottom: 5.5rem;
+}

@@ -24,7 +24,7 @@ const CartBody = () => {
                 {context.check().map((pokemon, index) => (
                     <div key={index} className="row justify-content-center d-flex align-items-center border border-dark border-3 bg-danger m-5">
                         <div className="col-1">
-                            <img src={pokemon.img} className="border border-dark border-3 m-3 bg-white" alt="..."></img>
+                            <img src={pokemon.img} className="border border-dark border-3 m-3 bg-white" height={"60px"} alt="..."></img>
                         </div>
                         <div className="col-1 d-inline align-middle">
                             <h3 className="align-middle">{pokemon.nombre}</h3>

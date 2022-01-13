@@ -1,40 +1,53 @@
 import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import ItemDetail from "./ItemDetail"
+import ItemDetail from "./ItemDetail";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import ButtonFunct from "./Commons";
-import NavBar from './NavBar';
 
 const DetailContainer = () => {
 
     const {id} = useParams() || ""
 
-    const [pokemon, setPokemon] = useState({});
-    const [idpoke, setIdpoke] = useState(parseInt(id))
+    // const [pokemon, setPokemon] = useState({});
+    // const [idpoke, setIdpoke] = useState(parseInt(id))
 
-    const fetchPokemon = async () => {
-        const call = await fetch(`https://pokeapi.co/api/v2/pokemon/${idpoke}`);
-        const result = await call.json();
-        setPokemon(result);
-    };
+    const [index, setIndex] = useState(id)
+    const [pokemon, setPokemon] = useState([])
 
     useEffect(() => {
-        fetchPokemon();
-        },[idpoke]);
+        const db = getFirestore();
 
-    const AddId = () => {
-        (idpoke >= 500) ? console.log("maximo") : setIdpoke ((prev) => prev + 1);
-    }
+        const q = query(collection(db, "items"), where("poke_id","==", index));
+        getDocs(q).then((snapshot) => {
+            setPokemon(snapshot.docs.map((doc) => ({ id: doc.id,...doc.data()})))
+        });
+    }, [index]);
 
-    const RestId = () => {
-        (idpoke <= 1) ? console.log("minimo") : setIdpoke ((prev) => prev - 1);
 
-    }
+    // const fetchPokemon = async () => {
+    //     const call = await fetch(`https://pokeapi.co/api/v2/pokemon/${idpoke}`);
+    //     const result = await call.json();
+    //     setPokemon(result);
+    // };
+
+    // useEffect(() => {
+    //     fetchPokemon();
+    //     },[idpoke]);
+
+    // const AddId = () => {
+    //     (idpoke >= 500) ? console.log("maximo") : setIdpoke ((prev) => prev + 1);
+    // }
+
+    // const RestId = () => {
+    //     (index <= 1) ? console.log("minimo") : setIndex ((prev) => prev - 1);
+
+    // }
 
     return (
         <div className="App poke-background">
-            <ButtonFunct funcion={RestId} nombre={"BEFORE"}/>
-            <ButtonFunct funcion={AddId} nombre={"NEXT"}/>
-            <ItemDetail pokemon={pokemon}/>
+            {/* <ButtonFunct funcion={RestId} nombre={"BEFORE"}/> */}
+            {/* <ButtonFunct funcion={AddId} nombre={"NEXT"}/> */}
+            <ItemDetail pokemon={pokemon[0]}/>
         </div>
     )
 }
