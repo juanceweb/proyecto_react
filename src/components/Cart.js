@@ -3,6 +3,7 @@ import CartContext from "../contexts/CartContext";
 import {useContext, useState} from "react";
 import ButtonFunct from "./Commons";
 import { NavLink } from "react-router-dom";
+import { addDoc, collection, getFirestore} from "firebase/firestore"
 
 
 
@@ -10,6 +11,25 @@ const CartBody = () => {
 
     const context = useContext(CartContext)
     const {arr} = useContext(CartContext)
+
+    const db = getFirestore();
+
+    const sendOrder = (arr) =>{
+
+        const order = {
+            buyer: { name: "juan", phone:"55555", email: "test@test.com"},
+            items: arr.map((pokemon, index) => (
+                {nombre: pokemon.nombre, precio: pokemon.precio} ))
+        }
+
+        const ordersCollection = collection(db, "items")
+
+        addDoc(ordersCollection, order).then(({id}) =>{
+            console.log(id)
+        })
+
+    }
+
 
     if (arr.length === 0){
         return (
@@ -49,6 +69,7 @@ const CartBody = () => {
                         </div>
                     </div>))}
                 <ButtonFunct nombre="Vaciar" funcion={() => context.wype()}/>
+                <ButtonFunct nombre="Comprar" funcion={() => sendOrder(context.check())} />
             </div>)
     }
 }
