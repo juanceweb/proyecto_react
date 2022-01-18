@@ -6,13 +6,16 @@ function CustomContext ({children}){
     const [arr, setArr] = useState([])
 
     function add(pokemon, cantidad) {
-        const result = arr.find(element => element.id == pokemon.id)
+        const result = arr.find(element => element.id == pokemon.poke_id)
         if (result == undefined) {
-            console.log("se cargo al carrito");
-            const aux = [...arr,{id: pokemon.poke_id, nombre: pokemon.nombre, cantidad: cantidad, img : pokemon.img, precio: pokemon.precio}]
+            const aux = [...arr,{id: pokemon.poke_id, nombre: pokemon.nombre, cantidad: cantidad, img : pokemon.img, precio: pokemon.precio, stock: pokemon.stock}]
             setArr(aux)
         }else {
+            if (result.cantidad + cantidad > result.stock){
+                console.log("no hay tanta cantidad de ese producto");
+            } else {
             result.cantidad += cantidad;
+            }
         }
     }
 

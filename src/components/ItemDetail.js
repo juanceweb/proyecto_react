@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import FunctAddRest from "./ItemCountFunct"
 import CartContext from "../contexts/CartContext";
 
@@ -16,7 +16,7 @@ const ItemDetail = ({pokemon}) => {
                     <div className="card-body">
                         <h5 className="card-title text-white">{pokemon?.nombre}</h5>
                         <h4 className="card-title text-success">${pokemon?.precio}</h4>
-                        <FunctAddRest getCantidad={(c) => setCantidad(c)} stockIni={8} />
+                        <FunctAddRest getCantidad={(c) => setCantidad(c)} stockIni={pokemon?.stock} />
                         <a href="#" onClick={() => context.add(pokemon, cantidad)} className="btn btn-secondary m-3 border-dark border-2">AGREGAR AL CARRITO</a>
                     </div>
                 </div>

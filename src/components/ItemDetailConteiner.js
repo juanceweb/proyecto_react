@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import ButtonFunct from "./Commons";
+import Pokeimg from "../media/pngegg.png";
 
 const DetailContainer = () => {
 
@@ -43,13 +44,34 @@ const DetailContainer = () => {
 
     // }
 
-    return (
-        <div className="App poke-background">
-            {/* <ButtonFunct funcion={RestId} nombre={"BEFORE"}/> */}
-            {/* <ButtonFunct funcion={AddId} nombre={"NEXT"}/> */}
-            <ItemDetail pokemon={pokemon[0]}/>
-        </div>
-    )
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    },[]);
+
+    if (loading) {
+        return (
+            <div className="loading poke-background">
+                <img src={Pokeimg} alt="" height="500px" width="1200px"></img>
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border m-5 text-danger" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        )
+    }else {
+        return (
+            <div className="App poke-background">
+                {/* <ButtonFunct funcion={RestId} nombre={"BEFORE"}/> */}
+                {/* <ButtonFunct funcion={AddId} nombre={"NEXT"}/> */}
+                <ItemDetail pokemon={pokemon[0]} />
+            </div>
+        )
+    }
 }
 
 export default DetailContainer

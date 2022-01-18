@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 
 
-const FunctAddRest = ({valorInicial = 1, stockIni = 5, getCantidad}) => {
+const FunctAddRest = ({valorInicial = 1, stockIni, getCantidad}) => {
     const [valor, setValor] = useState(valorInicial)
     const [stock, setStock] = useState(stockIni)
 

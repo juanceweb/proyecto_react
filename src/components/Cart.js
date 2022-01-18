@@ -18,11 +18,11 @@ const CartBody = () => {
 
         const order = {
             buyer: { name: "juan", phone:"55555", email: "test@test.com"},
-            items: arr.map((pokemon, index) => (
-                {nombre: pokemon.nombre, precio: pokemon.precio} ))
+            items: arr.map((pokemon) => (
+                {nombre: pokemon.nombre, precio: pokemon.precio , cantidad: pokemon.cantidad, total_parcial: pokemon.precio*pokemon.cantidad } ))
         }
 
-        const ordersCollection = collection(db, "items")
+        const ordersCollection = collection(db, "orders")
 
         addDoc(ordersCollection, order).then(({id}) =>{
             console.log(id)
